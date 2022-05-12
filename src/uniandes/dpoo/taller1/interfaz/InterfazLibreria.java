@@ -346,6 +346,18 @@ public class InterfazLibreria extends JFrame
 		}
 		JOptionPane.showMessageDialog(this, mensaje, "Consulta", JOptionPane.INFORMATION_MESSAGE);
 	}
+	
+	public void eliminarLibrosPorAutores(){
+		String autores = JOptionPane.showInputDialog(this, "Ingrese los nombres de los autores separados por ',' sin espacios",
+				"AutorA,AutorB");
+		
+		if (autores != null) {
+			int librosBorrados = libreria.eliminarLibrosPorAutores(autores);
+			JOptionPane.showMessageDialog(this, librosBorrados, "Consulta", JOptionPane.INFORMATION_MESSAGE);
+		}
+		ArrayList<Libro> libros = libreria.darLibros();
+		panelLibros.actualizarLibros(libros);
+	}
 
 	// ************************************************************************
 	// Main
