@@ -348,15 +348,20 @@ public class InterfazLibreria extends JFrame
 	}
 	
 	public void eliminarLibrosPorAutores(){
-		String autores = JOptionPane.showInputDialog(this, "Ingrese los nombres de los autores separados por ',' sin espacios",
-				"AutorA,AutorB");
-		
-		if (autores != null) {
-			int librosBorrados = libreria.eliminarLibrosPorAutores(autores);
-			JOptionPane.showMessageDialog(this, librosBorrados, "Consulta", JOptionPane.INFORMATION_MESSAGE);
+		try {
+			String autores = JOptionPane.showInputDialog(this, "Ingrese los nombres de los autores separados por ',' sin espacios",
+					"AutorA,AutorB");
+			if (autores != null) {
+				int librosBorrados = libreria.eliminarLibrosPorAutores(autores);
+				String mensaje = "La cantidad de libros borrados es: "+librosBorrados;
+				JOptionPane.showMessageDialog(this, mensaje, "Eliminar libros", JOptionPane.INFORMATION_MESSAGE);
+			}
+			ArrayList<Libro> libros = libreria.darLibros();
+			panelLibros.actualizarLibros(libros);
+		} catch (Exception e) {
+			String noSonAutores = e.getMessage();
+			JOptionPane.showMessageDialog(this, noSonAutores, "No se lograron eliminar los libros", JOptionPane.INFORMATION_MESSAGE);
 		}
-		ArrayList<Libro> libros = libreria.darLibros();
-		panelLibros.actualizarLibros(libros);
 	}
 
 	// ************************************************************************
