@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import javax.swing.JOptionPane;
+
 /**
  * Esta clase agrupa toda la información de una librería: las categorías que se
  * usan para clasificar los libros, y del catálogo de libros.
@@ -425,4 +427,31 @@ public class Libreria
 		return hayAutorEnVariasCategorias;
 	}
 
+	//Los cambios del taller deben ser implementados en la clase Librer�a
+	
+	public int eliminarLibrosPorAutores(String autores){
+		String[] arrayAutores = autores.split(",");
+		boolean temp = false;
+		int librosBorrados = 0;
+
+		for (int i = 0; i < arrayAutores.length; i++) {
+			String nombreAutor = arrayAutores[i];
+			ArrayList<Libro> librosAutor = buscarLibrosAutor(nombreAutor);
+			temp = librosAutor.isEmpty();
+		}
+//	Se est�n borrando pero al mismo tiempo no xd
+		if (!temp) {
+			for (int i = 0; i < arrayAutores.length; i++) {
+				String nombreAutor = arrayAutores[i];
+				ArrayList<Libro> librosAutor = buscarLibrosAutor(nombreAutor);
+				for (int j = 0; j < librosAutor.size(); j++) {
+					Libro libroEliminando = librosAutor.get(j);
+					int index = catalogo.indexOf(libroEliminando);
+					catalogo.remove(index);
+				}
+				librosBorrados += librosAutor.size();
+			}
+		}
+		return librosBorrados;
+	}
 }
