@@ -429,17 +429,29 @@ public class Libreria
 
 	//Los cambios del taller deben ser implementados en la clase Librería
 	
-	public int eliminarLibrosPorAutores(String autores){
+	public int eliminarLibrosPorAutores(String autores) throws Exception{
 		String[] arrayAutores = autores.split(",");
 		boolean temp = false;
 		int librosBorrados = 0;
-
+		ArrayList<Libro> librosNoBorrados = new ArrayList<>();
+		String noSonAutores = "No son autor/es: \n";
+		//Ciclo para comprobar que todos los autores tengan al menos 1 libro
 		for (int i = 0; i < arrayAutores.length; i++) {
 			String nombreAutor = arrayAutores[i];
 			ArrayList<Libro> librosAutor = buscarLibrosAutor(nombreAutor);
 			temp = librosAutor.isEmpty();
+			if(temp) {
+				noSonAutores += nombreAutor+".\n";		
+			}
+			if (!temp) {
+				librosNoBorrados.addAll(librosAutor);
+			}
 		}
-//	Se están borrando pero al mismo tiempo no xd
+		noSonAutores += "Los libros que no se pudieron eliminar son: \n";
+		for (Libro libro : librosNoBorrados) {
+			noSonAutores += libro.darTitulo()+"\n";
+		}
+		//	Ciclo para borrar el libro del autor
 		if (!temp) {
 			for (int i = 0; i < arrayAutores.length; i++) {
 				String nombreAutor = arrayAutores[i];
@@ -448,9 +460,16 @@ public class Libreria
 					Libro libroEliminando = librosAutor.get(j);
 					int index = catalogo.indexOf(libroEliminando);
 					catalogo.remove(index);
+					String nombreCategoria = libroEliminando.darCategoria().darNombre();
+					Categoria categoriaLibro = buscarCategoria(nombreCategoria);
+					index = categoriaLibro.darLibros().indexOf(libroEliminando);
+					categoriaLibro.darLibros().remove(index);
 				}
 				librosBorrados += librosAutor.size();
+				librosAutor.clear();
 			}
+		} else {
+			throw new Exception(noSonAutores);
 		}
 		return librosBorrados;
 	}
