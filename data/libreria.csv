@@ -1,8 +1,8 @@
 Titulo,Autor,Calificacion,Categoria,Portada,Ancho,Alto
-David Mitchell: Back Story,David Mitchell,4.0,Art-Photography,./imagenes/00000.jpg,147,220
+David Mitchell: Back Story,David Mitchell,4.0,Drama,./imagenes/00000.jpg,147,220
 Your Beauty Mark,Dita von Teese,4.0,Art-Photography,./imagenes/00001.jpg,195,219
 Book of Longing,Leonard Cohen,4.0,Art-Photography,./imagenes/00002.jpg,130,200
-On Photography,Susan Sontag,4.0,Art-Photography,./imagenes/00003.jpg,117,202
+On Photography,Susan Sontag,4.0,Drama,./imagenes/00003.jpg,117,202
 Atlas of Human Anatomy for the Artist,Stephen Rogers Peck,4.0,Art-Photography,./imagenes/00004.jpg,154,220
 Meetings with Remarkable Manuscripts,Christopher De Hamel,4.5,Art-Photography,./imagenes/00005.jpg,143,220
 The Liberty Colouring Book,,4.0,Art-Photography,./imagenes/00006.jpg,158,220
@@ -14,7 +14,7 @@ Fun with Dinosaur Stencils,Albert G. Smith,4.5,Art-Photography,./imagenes/00011.
 The Street Photographer's Manual,David Gibson,4.0,Art-Photography,./imagenes/00012.jpg,169,220
 Plant Style,Alana Langan,3.5,Art-Photography,./imagenes/00013.jpg,132,174
 Improve your sight-reading! Piano Grade 4,Paul Harris,5.0,Art-Photography,./imagenes/00014.jpg,165,220
-Frederic Chopin,Frederic Chopin,4.5,Art-Photography,./imagenes/00015.jpg,166,220
+Frederic Chopin,Frederic Chopin,4.5,Ficcion,./imagenes/00015.jpg,166,220
 Art as Therapy,Alain de Botton,4.0,Art-Photography,./imagenes/00016.jpg,168,220
 How to Draw Anything,Mark Linley,3.5,Art-Photography,./imagenes/00017.jpg,142,218
 Hygge,Marie Tourell Söderberg,3.5,Art-Photography,./imagenes/00018.jpg,174,220
