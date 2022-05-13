@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -172,10 +171,6 @@ public class InterfazLibreria extends JFrame
 		{
 			libreria = new Libreria(archivo_categorias.getPath(), archivo_libros.getPath());
 			panelCategorias.actualizarCategorias(libreria.darCategorias());
-			if (libreria.getCategoriasAdicionadas().size() > 0)
-			{
-				this.mostrarCategoriasAdicionadas();
-			}
 		}
 		catch (Exception e)
 		{
@@ -183,7 +178,6 @@ public class InterfazLibreria extends JFrame
 					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
-		
 
 	}
 
@@ -351,19 +345,6 @@ public class InterfazLibreria extends JFrame
 			mensaje = "Hay al menos un autor con al menos un libro en dos categorï¿½as diferentes.";
 		}
 		JOptionPane.showMessageDialog(this, mensaje, "Consulta", JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	public void mostrarCategoriasAdicionadas()
-	{
-		String mensaje = "";
-		for (Categoria categoria : this.libreria.getCategoriasAdicionadas()) {
-			ArrayList<Libro> libros = libreria.darLibros(categoria.darNombre());
-			int numLibros = libros.size();
-			mensaje += categoria.darNombre() + " tiene " + numLibros + " libro(s).\n";
-		}
-		
-		JOptionPane.showMessageDialog(this, "Las categorias adicionadas son: \n" + mensaje, "Atención!",
-				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public void eliminarLibrosPorAutores(){
