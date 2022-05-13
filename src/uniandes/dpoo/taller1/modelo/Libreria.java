@@ -22,7 +22,7 @@ public class Libreria
 	// ************************************************************************
 	// Atributos
 	// ************************************************************************
-
+	private ArrayList<Categoria> categoriasAdicionadas = null;
 	/**
 	 * El arreglo con las categorías que hay en la librería
 	 */
@@ -50,6 +50,7 @@ public class Libreria
 	 */
 	public Libreria(String nombreArchivoCategorias, String nombreArchivoLibros) throws IOException
 	{
+		this.categoriasAdicionadas = new ArrayList<Categoria>();
 		this.categorias = cargarCategorias(nombreArchivoCategorias);
 		this.catalogo = cargarCatalogo(nombreArchivoLibros);
 	}
@@ -122,6 +123,21 @@ public class Libreria
 
 		return arregloCategorias;
 	}
+	
+	private Categoria crearCategoria(String nombreCat)
+	{
+		Categoria[] nuevoArregloCat = new Categoria[this.categorias.length+1];
+		Categoria nuevaCat = new Categoria(nombreCat, false);
+		for(int i = 0; i < this.categorias.length; i++)
+		{
+			nuevoArregloCat[i] = this.categorias[i];
+		}
+		nuevoArregloCat[this.categorias.length] = nuevaCat;
+		this.categorias = nuevoArregloCat;
+		this.categoriasAdicionadas.add(nuevaCat);
+		
+		return nuevaCat;
+	}
 
 	/**
 	 * Carga la información sobre los libros disponibles en la librería.
@@ -151,7 +167,12 @@ public class Libreria
 			String elAutor = partes[1];
 			double laCalificacion = Double.parseDouble(partes[2]);
 			String nombreCategoria = partes[3];
-			Categoria laCategoria = buscarCategoria(nombreCategoria);
+			Categoria laCategoria = null;
+			try {
+				laCategoria = buscarCategoria(nombreCategoria);
+			} catch (Exception e) {
+				laCategoria = crearCategoria(nombreCategoria);
+			}
 			String archivoPortada = partes[4];
 			int ancho = Integer.parseInt(partes[5]);
 			int alto = Integer.parseInt(partes[6]);
@@ -181,13 +202,17 @@ public class Libreria
 	 * @param nombreCategoria El nombre de la categoría buscada
 	 * @return La categoría que tiene el nombre dado
 	 */
-	private Categoria buscarCategoria(String nombreCategoria)
+	private Categoria buscarCategoria(String nombreCategoria) throws Exception
 	{
 		Categoria laCategoria = null;
 		for (int i = 0; i < categorias.length && laCategoria == null; i++)
 		{
 			if (categorias[i].darNombre().equals(nombreCategoria))
 				laCategoria = categorias[i];
+		}
+		if (laCategoria == null)
+		{
+			throw new Exception("La categoria no existe.");
 		}
 		return laCategoria;
 	}
@@ -472,5 +497,13 @@ public class Libreria
 			throw new Exception(noSonAutores);
 		}
 		return librosBorrados;
+	}
+	
+	public ArrayList<Categoria> getCategoriasAdicionadas() {
+		return categoriasAdicionadas;
+	}
+
+	public void setCategoriasAdicionadas(ArrayList<Categoria> categoriasAdicionadas) {
+		this.categoriasAdicionadas = categoriasAdicionadas;
 	}
 }
