@@ -22,7 +22,7 @@ public class Libreria
 	// ************************************************************************
 	// Atributos
 	// ************************************************************************
-	private ArrayList<Categoria> categoriasAdicionadas = null;
+
 	/**
 	 * El arreglo con las categorías que hay en la librería
 	 */
@@ -50,7 +50,6 @@ public class Libreria
 	 */
 	public Libreria(String nombreArchivoCategorias, String nombreArchivoLibros) throws IOException
 	{
-		this.categoriasAdicionadas = new ArrayList<Categoria>();
 		this.categorias = cargarCategorias(nombreArchivoCategorias);
 		this.catalogo = cargarCatalogo(nombreArchivoLibros);
 	}
@@ -123,22 +122,6 @@ public class Libreria
 
 		return arregloCategorias;
 	}
-	
-	private Categoria crearCategoria(String nombreCat)
-	{
-		Categoria[] nuevoArregloCat = new Categoria[this.categorias.length+1];
-		Categoria nuevaCat = new Categoria(nombreCat, false);
-		for(int i = 0; i < this.categorias.length; i++)
-		{
-			nuevoArregloCat[i] = this.categorias[i];
-		}
-		nuevoArregloCat[this.categorias.length] = nuevaCat;
-		this.categorias = nuevoArregloCat;
-		this.categoriasAdicionadas.add(nuevaCat);
-		
-		return nuevaCat;
-	}
-
 
 	/**
 	 * Carga la información sobre los libros disponibles en la librería.
@@ -149,7 +132,8 @@ public class Libreria
 	 * @param nombreArchivoLibros El nombre del archivo CSV que contiene la
 	 *                            información de los libros
 	 * @return Una lista con los libros que se cargaron a partir del archivo
-	 * @throws Exception 
+	 * @throws IOException Se lanza esta excepción si hay algún problema leyendo del
+	 *                     archivo
 	 */
 	private ArrayList<Libro> cargarCatalogo(String nombreArchivoLibros) throws IOException
 	{
@@ -167,12 +151,7 @@ public class Libreria
 			String elAutor = partes[1];
 			double laCalificacion = Double.parseDouble(partes[2]);
 			String nombreCategoria = partes[3];
-			Categoria laCategoria = null;
-			try {
-				laCategoria = buscarCategoria(nombreCategoria);
-			} catch (Exception e) {
-				laCategoria = crearCategoria(nombreCategoria);
-			}
+			Categoria laCategoria = buscarCategoria(nombreCategoria);
 			String archivoPortada = partes[4];
 			int ancho = Integer.parseInt(partes[5]);
 			int alto = Integer.parseInt(partes[6]);
@@ -202,17 +181,13 @@ public class Libreria
 	 * @param nombreCategoria El nombre de la categoría buscada
 	 * @return La categoría que tiene el nombre dado
 	 */
-	private Categoria buscarCategoria(String nombreCategoria) throws Exception
+	private Categoria buscarCategoria(String nombreCategoria)
 	{
 		Categoria laCategoria = null;
 		for (int i = 0; i < categorias.length && laCategoria == null; i++)
 		{
 			if (categorias[i].darNombre().equals(nombreCategoria))
 				laCategoria = categorias[i];
-		}
-		if (laCategoria == null)
-		{
-			throw new Exception("La categoria no existe.");
 		}
 		return laCategoria;
 	}
@@ -454,17 +429,29 @@ public class Libreria
 
 	//Los cambios del taller deben ser implementados en la clase Librer�a
 	
-	public int eliminarLibrosPorAutores(String autores){
+	public int eliminarLibrosPorAutores(String autores) throws Exception{
 		String[] arrayAutores = autores.split(",");
 		boolean temp = false;
 		int librosBorrados = 0;
-
+		ArrayList<Libro> librosNoBorrados = new ArrayList<>();
+		String noSonAutores = "No son autor/es: \n";
+		//Ciclo para comprobar que todos los autores tengan al menos 1 libro
 		for (int i = 0; i < arrayAutores.length; i++) {
 			String nombreAutor = arrayAutores[i];
 			ArrayList<Libro> librosAutor = buscarLibrosAutor(nombreAutor);
 			temp = librosAutor.isEmpty();
+			if(temp) {
+				noSonAutores += nombreAutor+".\n";		
+			}
+			if (!temp) {
+				librosNoBorrados.addAll(librosAutor);
+			}
 		}
-//	Se est�n borrando pero al mismo tiempo no xd
+		noSonAutores += "Los libros que no se pudieron eliminar son: \n";
+		for (Libro libro : librosNoBorrados) {
+			noSonAutores += libro.darTitulo()+"\n";
+		}
+		//	Ciclo para borrar el libro del autor
 		if (!temp) {
 			for (int i = 0; i < arrayAutores.length; i++) {
 				String nombreAutor = arrayAutores[i];
@@ -473,18 +460,17 @@ public class Libreria
 					Libro libroEliminando = librosAutor.get(j);
 					int index = catalogo.indexOf(libroEliminando);
 					catalogo.remove(index);
+					String nombreCategoria = libroEliminando.darCategoria().darNombre();
+					Categoria categoriaLibro = buscarCategoria(nombreCategoria);
+					index = categoriaLibro.darLibros().indexOf(libroEliminando);
+					categoriaLibro.darLibros().remove(index);
 				}
 				librosBorrados += librosAutor.size();
+				librosAutor.clear();
 			}
+		} else {
+			throw new Exception(noSonAutores);
 		}
 		return librosBorrados;
-	}
-	
-	public ArrayList<Categoria> getCategoriasAdicionadas() {
-		return categoriasAdicionadas;
-	}
-
-	public void setCategoriasAdicionadas(ArrayList<Categoria> categoriasAdicionadas) {
-		this.categoriasAdicionadas = categoriasAdicionadas;
 	}
 }

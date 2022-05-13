@@ -40,6 +40,8 @@ public class PanelBotones extends JPanel implements ActionListener
 	private final static String AUTOR_VARIAS_CATEGORIAS = "HayAutorEnVariasCategorias";
 	
 	private final static String ELIMINAR_LIBROS_AUTORES = "EliminarLibrosAutores";
+	
+	private final static String RENOMBRAR_CATEGORIA = "RenombrarCategoria";
 
 	// ************************************************************************
 	// Atributos
@@ -69,11 +71,12 @@ public class PanelBotones extends JPanel implements ActionListener
 		agregarBoton(BUSCAR_LIBROS_AUTOR, "Buscar libros de un autor", "./data/iconos/autor2.png");
 		agregarBoton(BUSCAR_CATEGORIA_AUTOR, "Buscar categorÃ­as autor", "./data/iconos/contenido.png");
 		agregarBoton(CALIFICACION, "Buscar libro con titulo", "./data/iconos/estrella.png");
-		agregarBoton(CATEGORIA_MAS_LIBROS, "Buscar la categoría con más libros", "./data/iconos/libreria.png");
-		agregarBoton(CONTAR_SIN_PORTADA, "Contar libros sin portada", "./data/iconos/libro.png");
-		agregarBoton(CATEGORIA_MEJOR, "Buscar la mejor categoría", "./data/iconos/premio.png");
-		agregarBoton(AUTOR_VARIAS_CATEGORIAS, "Buscar autor con más categorías", "./data/iconos/autor.png");
-		agregarBoton(ELIMINAR_LIBROS_AUTORES, "Eliminar libros de autores", "./data/iconos/autor.png");
+		agregarBoton(ELIMINAR_LIBROS_AUTORES, "Eliminar libros de autores", "./data/iconos/eliminarAutores.png");
+		agregarBoton(CATEGORIA_MAS_LIBROS, "Buscar libro con titulo", "./data/iconos/libreria.png");
+		agregarBoton(CONTAR_SIN_PORTADA, "Buscar libro con titulo", "./data/iconos/libro.png");
+		agregarBoton(CATEGORIA_MEJOR, "Buscar libro con titulo", "./data/iconos/premio.png");
+		agregarBoton(AUTOR_VARIAS_CATEGORIAS, "Buscar libro con titulo", "./data/iconos/autor.png");
+		agregarBoton(RENOMBRAR_CATEGORIA, "Renombrar categoria", "./data/iconos/premio.png");
 	}
 
 	// ************************************************************************
@@ -150,6 +153,10 @@ public class PanelBotones extends JPanel implements ActionListener
 		}
 		else if(ELIMINAR_LIBROS_AUTORES.equals(comando)) {
 			ventana.eliminarLibrosPorAutores();
+		}
+		else if (RENOMBRAR_CATEGORIA.equals(comando))
+		{
+			ventana.renombrarCategoria();
 		}
 	}
 

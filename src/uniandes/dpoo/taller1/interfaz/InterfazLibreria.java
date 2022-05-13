@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -172,10 +171,6 @@ public class InterfazLibreria extends JFrame
 		{
 			libreria = new Libreria(archivo_categorias.getPath(), archivo_libros.getPath());
 			panelCategorias.actualizarCategorias(libreria.darCategorias());
-			if (libreria.getCategoriasAdicionadas().size() > 0)
-			{
-				this.mostrarCategoriasAdicionadas();
-			}
 		}
 		catch (Exception e)
 		{
@@ -183,7 +178,6 @@ public class InterfazLibreria extends JFrame
 					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
-		
 
 	}
 
@@ -353,29 +347,46 @@ public class InterfazLibreria extends JFrame
 		JOptionPane.showMessageDialog(this, mensaje, "Consulta", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	public void mostrarCategoriasAdicionadas()
-	{
-		String mensaje = "";
-		for (Categoria categoria : this.libreria.getCategoriasAdicionadas()) {
-			ArrayList<Libro> libros = libreria.darLibros(categoria.darNombre());
-			int numLibros = libros.size();
-			mensaje += categoria.darNombre() + " tiene " + numLibros + " libro(s).\n";
-		}
-		
-		JOptionPane.showMessageDialog(this, "Las categorias adicionadas son: \n" + mensaje, "Atención!",
-				JOptionPane.INFORMATION_MESSAGE);
-	}
-	
 	public void eliminarLibrosPorAutores(){
-		String autores = JOptionPane.showInputDialog(this, "Ingrese los nombres de los autores separados por ',' sin espacios",
-				"AutorA,AutorB");
-		
-		if (autores != null) {
-			int librosBorrados = libreria.eliminarLibrosPorAutores(autores);
-			JOptionPane.showMessageDialog(this, librosBorrados, "Consulta", JOptionPane.INFORMATION_MESSAGE);
+		try {
+			String autores = JOptionPane.showInputDialog(this, "Ingrese los nombres de los autores separados por ',' sin espacios",
+					"AutorA,AutorB");
+			if (autores != null) {
+				int librosBorrados = libreria.eliminarLibrosPorAutores(autores);
+				String mensaje = "La cantidad de libros borrados es: "+librosBorrados;
+				JOptionPane.showMessageDialog(this, mensaje, "Eliminar libros", JOptionPane.INFORMATION_MESSAGE);
+			}
+			ArrayList<Libro> libros = libreria.darLibros();
+			panelLibros.actualizarLibros(libros);
+		} catch (Exception e) {
+			String noSonAutores = e.getMessage();
+			JOptionPane.showMessageDialog(this, noSonAutores, "No se lograron eliminar los libros", JOptionPane.INFORMATION_MESSAGE);
 		}
-		ArrayList<Libro> libros = libreria.darLibros();
-		panelLibros.actualizarLibros(libros);
+	}
+		
+	public void renombrarCategoria() {
+		 String nuevaCategoria = JOptionPane.showInputDialog("Ingrese el nuevo nombre");
+		 Categoria categoria_seleccionada = (Categoria) panelCategorias.getCbbCategorias().getSelectedItem();
+
+		 boolean categoriaRepetida = false;
+		 try {
+		     for (Categoria categoria : libreria.darCategorias()) {
+		         if (categoria.darNombre().equals(nuevaCategoria)) {
+		             categoriaRepetida = true;
+		             throw new Exception("Categoria repetida");
+		                }
+		            }
+		 } catch (Exception error) {
+		     System.err.println(error);
+		        }
+
+		 if (categoriaRepetida) {
+		     JOptionPane.showMessageDialog(this, "La categoria esta repetida", "Error", JOptionPane.ERROR_MESSAGE);
+		 }else {
+		     categoria_seleccionada.setNombre(nuevaCategoria);
+		        }
+
+		    
 	}
 
 	// ************************************************************************
