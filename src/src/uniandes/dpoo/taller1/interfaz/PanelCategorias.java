@@ -11,7 +11,7 @@ import javax.swing.border.TitledBorder;
 import uniandes.dpoo.taller1.modelo.Categoria;
 
 /**
- * Panel donde se muestran las categorÌas de la librerÌa
+ * Panel donde se muestran las categor√≠as de la librer√≠a
  */
 @SuppressWarnings("serial")
 public class PanelCategorias extends JPanel implements ItemListener
@@ -26,11 +26,11 @@ public class PanelCategorias extends JPanel implements ItemListener
 	private InterfazLibreria ventana;
 
 	// ************************************************************************
-	// Componentes gr·ficos
+	// Componentes gr√°ficos
 	// ************************************************************************
 
 	/**
-	 * ComboBox con la informaciÛn de las categorÌas
+	 * ComboBox con la informaci√≥n de las categor√≠as
 	 */
 	private JComboBox<Categoria> cbbCategorias;
 
@@ -46,7 +46,7 @@ public class PanelCategorias extends JPanel implements ItemListener
 	public PanelCategorias(InterfazLibreria interfazLibreria)
 	{
 		ventana = interfazLibreria;
-		setBorder(new TitledBorder("CategorÌas"));
+		setBorder(new TitledBorder("Categor√≠as"));
 		setLayout(new BorderLayout());
 		cbbCategorias = new JComboBox<>();
 		cbbCategorias.addItemListener(this);
@@ -54,11 +54,11 @@ public class PanelCategorias extends JPanel implements ItemListener
 	}
 
 	// ************************************************************************
-	// MÈtodos
+	// M√©todos
 	// ************************************************************************
 
 	/**
-	 * Actualiza las categorÌas que se muestran en el combo box
+	 * Actualiza las categor√≠as que se muestran en el combo box
 	 * 
 	 * @param categorias
 	 */
@@ -73,14 +73,14 @@ public class PanelCategorias extends JPanel implements ItemListener
 	}
 
 	// ************************************************************************
-	// MÈtodos implementados de la interfaz ItemListener
+	// M√©todos implementados de la interfaz ItemListener
 	// ************************************************************************
 
 	/**
-	 * Este mÈtodo es el que se invoca cuando se selecciona una categorÌa nueva en
+	 * Este m√©todo es el que se invoca cuando se selecciona una categor√≠a nueva en
 	 * el combobox.
 	 *
-	 * Al hacer una selecciÛn, se invoca al mÈtodo cambiarCategoria de
+	 * Al hacer una selecci√≥n, se invoca al m√©todo cambiarCategoria de
 	 * InterfazLibreria
 	 */
 	@Override
