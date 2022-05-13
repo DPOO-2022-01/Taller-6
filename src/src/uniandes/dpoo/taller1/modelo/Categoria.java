@@ -166,8 +166,13 @@ public class Categoria
 			}
 		}
 
-		return librosAutor;
+		return librosAutor;}
+		
+	public void setNombre(String nombre) 
+	{
+		this.nombre = nombre;
 	}
+	
 
 	// ************************************************************************
 	// Métodos sobrecargados

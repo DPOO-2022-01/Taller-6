@@ -346,6 +346,31 @@ public class InterfazLibreria extends JFrame
 		}
 		JOptionPane.showMessageDialog(this, mensaje, "Consulta", JOptionPane.INFORMATION_MESSAGE);
 	}
+		
+	public void renombrarCategoria() {
+		 String nuevaCategoria = JOptionPane.showInputDialog("Ingrese el nuevo nombre");
+		 Categoria categoria_seleccionada = (Categoria) panelCategorias.getCbbCategorias().getSelectedItem();
+
+		 boolean categoriaRepetida = false;
+		 try {
+		     for (Categoria categoria : libreria.darCategorias()) {
+		         if (categoria.darNombre().equals(nuevaCategoria)) {
+		             categoriaRepetida = true;
+		             throw new Exception("Categoria repetida");
+		                }
+		            }
+		 } catch (Exception error) {
+		     System.err.println(error);
+		        }
+
+		 if (categoriaRepetida) {
+		     JOptionPane.showMessageDialog(this, "La categoria esta repetida", "Error", JOptionPane.ERROR_MESSAGE);
+		 }else {
+		     categoria_seleccionada.setNombre(nuevaCategoria);
+		        }
+
+		    
+	}
 
 	// ************************************************************************
 	// Main
