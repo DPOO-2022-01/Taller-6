@@ -11,9 +11,9 @@ import javax.swing.border.TitledBorder;
 
 /**
  * En este panel se tienen los botones con acciones para realizar sobre la
- * librer�a.
+ * librería.
  * 
- * Este panel tambi�n cumple el rol de ser el Listeners para sus propios
+ * Este panel también cumple el rol de ser el Listeners para sus propios
  * botones.
  */
 @SuppressWarnings("serial")
@@ -67,29 +67,28 @@ public class PanelBotones extends JPanel implements ActionListener
 		setLayout(new FlowLayout());
 		agregarBoton(BUSCAR_LIBRO, "Buscar libro con titulo", "./data/iconos/libros.png");
 		agregarBoton(BUSCAR_LIBROS_AUTOR, "Buscar libros de un autor", "./data/iconos/autor2.png");
-		agregarBoton(BUSCAR_CATEGORIA_AUTOR, "Buscar categor�as autor", "./data/iconos/contenido.png");
+		agregarBoton(BUSCAR_CATEGORIA_AUTOR, "Buscar categorías autor", "./data/iconos/contenido.png");
 		agregarBoton(CALIFICACION, "Buscar libro con titulo", "./data/iconos/estrella.png");
 		agregarBoton(CATEGORIA_MAS_LIBROS, "Buscar libro con titulo", "./data/iconos/libreria.png");
 		agregarBoton(CONTAR_SIN_PORTADA, "Buscar libro con titulo", "./data/iconos/libro.png");
 		agregarBoton(CATEGORIA_MEJOR, "Buscar libro con titulo", "./data/iconos/premio.png");
 		agregarBoton(AUTOR_VARIAS_CATEGORIAS, "Buscar libro con titulo", "./data/iconos/autor.png");
 		agregarBoton(RENOMBRAR_CATEGORIA, "Renombrar categoria", "./data/iconos/premio.png");
-		agregarBoton(ELIMINAR_LIBROS_AUTORES, "Eliminar libros de autores", "./data/iconos/eliminarAutores.png");
 	}
 
 	// ************************************************************************
-	// M�todos
+	// Métodos
 	// ************************************************************************
 
 	/**
-	 * Este m�todo sirve para agregar un bot�n al panel con las caracter�sticas
-	 * especificadas en los atributos. Este m�todo s�lo deber�a usarse durante la
-	 * construcci�n del panel.
+	 * Este método sirve para agregar un botón al panel con las características
+	 * especificadas en los atributos. Este método sólo debería usarse durante la
+	 * construcción del panel.
 	 * 
-	 * @param comando El comando asociado al bot�n que se usar� para identificarlo
+	 * @param comando El comando asociado al botón que se usará para identificarlo
 	 *                cuando se haga click.
-	 * @param texto   El texto que se mostrar� en el "tooltip" (ayuda) del bot�n.
-	 * @param imagen  La ruta a la imagen que se usar� como �cono del bot�n.
+	 * @param texto   El texto que se mostrará en el "tooltip" (ayuda) del botón.
+	 * @param imagen  La ruta a la imagen que se usará como ícono del botón.
 	 */
 	private void agregarBoton(String comando, String texto, String imagen)
 	{
@@ -102,15 +101,15 @@ public class PanelBotones extends JPanel implements ActionListener
 	}
 
 	// ************************************************************************
-	// M�todos implementados de la interfaz ActionListener
+	// Métodos implementados de la interfaz ActionListener
 	// ************************************************************************
 
 	/**
-	 * Este es el m�todo que se invoca cuando se hace click sobre alguno de los
+	 * Este es el método que se invoca cuando se hace click sobre alguno de los
 	 * botones en el panel.
 	 * 
-	 * Invoca un m�todo diferente de la ventana principal de la aplicaci�n
-	 * dependiendo del bot�n que haya sido presionado.
+	 * Invoca un método diferente de la ventana principal de la aplicación
+	 * dependiendo del botón que haya sido presionado.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -152,9 +151,6 @@ public class PanelBotones extends JPanel implements ActionListener
 		else if (RENOMBRAR_CATEGORIA.equals(comando))
 		{
 			ventana.renombrarCategoria();
-		}
-		else if(ELIMINAR_LIBROS_AUTORES.equals(comando)) {
-			ventana.eliminarLibrosPorAutores();
 		}
 	}
 

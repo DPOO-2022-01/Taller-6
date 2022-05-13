@@ -3,9 +3,9 @@ package uniandes.dpoo.taller1.modelo;
 import java.util.ArrayList;
 
 /**
- * Esta clase representa a una categoría de libros dentro de la librería. Cada
- * categoría tiene un nombre único y además sabe si es una categoría a la que
- * pertenecen libros de ficción o no.
+ * Esta clase representa a una categorÃ­a de libros dentro de la librerÃ­a. Cada
+ * categorÃ­a tiene un nombre Ãºnico y ademÃ¡s sabe si es una categorÃ­a a la que
+ * pertenecen libros de ficciÃ³n o no.
  */
 public class Categoria
 {
@@ -14,17 +14,17 @@ public class Categoria
 	// ************************************************************************
 
 	/**
-	 * Nombre de la categoría
+	 * Nombre de la categorÃ­a
 	 */
 	private String nombre;
 
 	/**
-	 * Indica si la categoría corresponde a libros de ficción o no
+	 * Indica si la categorÃ­a corresponde a libros de ficciÃ³n o no
 	 */
 	private boolean ficcion;
 
 	/**
-	 * Lista de libros que hacen parte de la categoría
+	 * Lista de libros que hacen parte de la categorÃ­a
 	 */
 	private ArrayList<Libro> libros;
 
@@ -40,11 +40,11 @@ public class Categoria
 	}
 
 	// ************************************************************************
-	// Métodos para consultar los atributos
+	// MÃ©todos para consultar los atributos
 	// ************************************************************************
 
 	/**
-	 * Consulta el nombre de la categoría
+	 * Consulta el nombre de la categorÃ­a
 	 * 
 	 * @return Categoria
 	 */
@@ -54,7 +54,7 @@ public class Categoria
 	}
 
 	/**
-	 * Consulta si esta es una categoría de ficción o no, con base en el atributo
+	 * Consulta si esta es una categorÃ­a de ficciÃ³n o no, con base en el atributo
 	 * ficcion.
 	 * 
 	 * @return ficcion
@@ -65,7 +65,7 @@ public class Categoria
 	}
 
 	/**
-	 * Retorna la lista de libros que hacen parte de la categoría
+	 * Retorna la lista de libros que hacen parte de la categorÃ­a
 	 * 
 	 * @return libros
 	 */
@@ -75,11 +75,11 @@ public class Categoria
 	}
 
 	// ************************************************************************
-	// Otros métodos
+	// Otros mÃ©todos
 	// ************************************************************************
 
 	/**
-	 * Agrega un nuevo libro a la categoría
+	 * Agrega un nuevo libro a la categorÃ­a
 	 * 
 	 * @param nuevoLibro El nuevo libro que se va a agregar.
 	 */
@@ -89,7 +89,7 @@ public class Categoria
 	}
 
 	/**
-	 * Cuenta la cantidad de libros en la categoría
+	 * Cuenta la cantidad de libros en la categorÃ­a
 	 * 
 	 * @return Cantidad de libros
 	 */
@@ -99,9 +99,9 @@ public class Categoria
 	}
 
 	/**
-	 * Calcula la calificación promedio de los libros que pertenecen a la categoría
+	 * Calcula la calificaciÃ³n promedio de los libros que pertenecen a la categorÃ­a
 	 * 
-	 * @return Calificación promedio
+	 * @return CalificaciÃ³n promedio
 	 */
 	public double calificacionPromedio()
 	{
@@ -116,13 +116,13 @@ public class Categoria
 	}
 
 	/**
-	 * Consulta si en la categoría hay algún libro escrito por el autor indicado.
+	 * Consulta si en la categorÃ­a hay algÃºn libro escrito por el autor indicado.
 	 * 
-	 * La búsqueda del autor se hace de forma exacta (tiene que ser idéntico al
-	 * valor indicado en el parámetro nombreAutor).
+	 * La bÃºsqueda del autor se hace de forma exacta (tiene que ser idÃ©ntico al
+	 * valor indicado en el parÃ¡metro nombreAutor).
 	 * 
 	 * @param nombreAutor El nombre del autor para el que se quiere hacer la
-	 *                    búsqueda.
+	 *                    bÃºsqueda.
 	 * @return Retorna true si hay al menos un libro cuyo autor es el autor buscado.
 	 *         Retorna false de lo contrario.
 	 */
@@ -141,13 +141,13 @@ public class Categoria
 	}
 
 	/**
-	 * Busca en la categoría los libros escritos por el autor indicado.
+	 * Busca en la categorÃ­a los libros escritos por el autor indicado.
 	 * 
-	 * El nombre del autor puede estar incompleto, y la búsqueda no debe tener en
-	 * cuenta mayúsculas y minúsculas. Por ejemplo, si se buscara por "ulio v"
-	 * deberían encontrarse los libros donde el autor sea "Julio Verne".
+	 * El nombre del autor puede estar incompleto, y la bÃºsqueda no debe tener en
+	 * cuenta mayÃºsculas y minÃºsculas. Por ejemplo, si se buscara por "ulio v"
+	 * deberÃ­an encontrarse los libros donde el autor sea "Julio Verne".
 	 * 
-	 * @param cadenaAutor La cadena que se usará para consultar el autor. No
+	 * @param cadenaAutor La cadena que se usarÃ¡ para consultar el autor. No
 	 *                    necesariamente corresponde al nombre completo de un autor.
 	 * @return Una lista con todos los libros cuyo autor coincida con la cadena
 	 *         indicada
@@ -175,11 +175,11 @@ public class Categoria
 	
 
 	// ************************************************************************
-	// Métodos sobrecargados
+	// MÃ©todos sobrecargados
 	// ************************************************************************
 
 	/**
-	 * Este método permite representar una categoría como una cadena de caracteres
+	 * Este mÃ©todo permite representar una categorÃ­a como una cadena de caracteres
 	 */
 	@Override
 	public String toString()
